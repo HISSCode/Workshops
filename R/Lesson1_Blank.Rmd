@@ -1,0 +1,149 @@
+---
+title: "R Workshop #1 Blank"
+author: "YOUR NAME HERE"
+date: "November 13th, 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE) # Don't worry too much about this
+```
+
+
+This is the graphical user interface for Rstudio. Using some simple syntax, you can tell Rstudio when you want something to be code.
+We will put our code into "Code Chunks." You can distinguish these from regular text by placing three "`" (The same key as the "~"" at the top left of your keyboard), a curly brace "{}" and "r," followed by whatever you want to name the code chunk. Shortcut: Ctrl+Alt+I
+
+
+This is our code chunk. We can place code inside the highlighted region and the computer can read it
+```{r, Chuck the Code Chunk}
+
+```
+
+
+## Variables
+
+```{r, delaring some variables}
+
+```
+
+By pressing the little green arrow at the top of your chunk, you can run your code. Shortcut: Ctrl+Shift+Enter
+
+
+You can store all types of data into variables (numbers, booleans, words, other variables, etc)
+
+```{r, myvars}
+
+```
+
+
+
+## Functions and Vectors
+
+Functions work just like in math. You put in an input(s) and expect something out. 
+
+Lets say we want to find the average of all the numbers from 0 to 100. We could do this by hand and it would take forever.
+Or, we just use functions!
+
+So we know how to store individual data, but how can we keep track of a group of data? 
+We can place them all into vectors. This can be done using the `c()` function. It stands for concatenate.
+
+```{r, declaring a vector}
+
+```
+
+That's a great start, but we still don't want to enter all 100 numbers by hand do we? So we can use the `seq()` function to enter them for us.
+
+```{r, combining vectors and functions}
+
+```
+
+We got our 100 numbers in one simple line of code, next we gotta take the average. To do that we'd have to add up all 100 numbers and divide by 100. Sounds like a lot of code to write. 
+
+Thankfully, somebody else made a function that will do it for us! We can use the `mean()` function
+
+```{r, coolbeans}
+
+```
+
+Before asking others for help, it is generally a good idea for you to try to help yourself. The `help()` function and `?` help operator in R provide access to documentation pages for R functions, data sets, and other objects.
+
+```{r}
+
+```
+
+We were able to congest a lot of information into a couple lines of code!
+
+## Data Frames
+
+In the real world, data is not just random numbers. Instead, it has some kind of meaning attached to it. Take a person for example. 
+
+A person can have:
++ A Name
++ An Age
++ Height
++ Ethnicity
+
+And the list goes on. Vectors are useful for grouping information, but we are going to need more vectors to keep track of different things. But what if we could group together our vectors?
+
+
+```{r, DatacFrame}
+
+```
+
+
+We now have a data frame that can display all sorts of information about a person. Our data now has meaning, and with that meaning you can answer all sorts of different problems. Lets say we wanted the average age of our 3 people
+
+```{r, avg}
+
+```
+
+
+Companies like Facebook have data frames like this that are much larger with tons more information. This is how they are able to do things such as predict who might be mutual friends of yours, or determine what kind of advertisements you might click on.
+
+## Reading in data files
+
+This was all great practice, but in school and the real world, you will be given an existing data set to work with. There are multiple ways to load data into R, but we will demonstrate with a .csv file.
+
+Use the `read.csv()` function to read in your file in table format.
+
+Remember to change your `\` to `\\` or `/` in your path.
+```{r,reading in data}
+
+```
+
+
+## Practice Problems
+
+1. Create a new column for my_data that describes this person's gender. 
+
+Hint: We use the $ to denote the name of a column. What if you store data into a column that doesn't exist? Try it!
+
+```{r, challenge1}
+
+```
+
+
+2. Lets say this dataframe represents a group of siblings, and we wanted to add Nick to this data frame. He is 33 years old and male. Write code to add Nick to this data frame. 
+
+HINT: What do the rows represent? 
+
+The rbind(dataframe1, dataframe2) function allows us to put together the rows of two dataframes. 
+
+```{r}
+
+```
+
+
+3. In our data frame, we have a column that details the person's age. Create a new column that tells us whether if the person is an adult or not using functions(>= 18). Do not manually type in the data! 
+
+Hint: Operators such as "+" or "-" are functions. We have a whole list of operators we can use in R (+, -, /, <, >, <=, >=, etc) What's an operator that might be useful here?
+
+```{r}
+
+```
+
+
+
+
+
+
