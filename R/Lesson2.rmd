@@ -1,0 +1,170 @@
+---
+title: "R Workshop #2"
+author: "YOUR NAME HERE"
+date: "November 25, 2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Data visualization
+
+Data visualization is a graphical representation of information and data. Visual elements such as charts, graphs, and maps provide an accessible way to see and understand trends, outliers, and patterns in data.
+
+In this workshop, we will be using built in functions to create our graphs. This is also known as Base R Graphics.
+
+## Packages in R
+
+There are thousands of people contributing to the R community. People create and distribute their functions and data into "packages" for everyone to use. R comes with a standard set of packages, but others are available for download and installation.
+
+```{r, installing ggplot2, include = F}
+#install.packages("ggplot2") # This line downloads the package
+library(ggplot2) #This line activates all the functions/datasets into your R session
+```
+
+There are tons of graphing tools people have made in R, but we are going to stick with the ones that come pre-installed. These are known as "Base R."
+
+The dataset, "diamonds" is included in the package "ggplot2."
+
+```{r, display diamonds dataset}
+diamonds #typing the name of the dataset will show its contents
+
+names(diamonds) # this gives us the names of all the column variables
+
+# We can access the different columns by using the "$" like before
+head(diamonds$carat) # this prints out the first part of a vector
+
+attach(diamonds) # This lets us call the name of the variable without the "$"
+
+head(carat) # Cool!
+```
+
+## Good vs. Bad Plots
+The goal of making plots is to visualize important data, so we can better understand what it means. So if a plot is bad, we wont be able to learn as much as we can from the data we're working with.
+
+Lets look at a bad plot first. What can we do to make this plot better?
+```{r}
+
+frequencies <- table(diamonds$carat)
+
+hist(frequencies, breaks = 1)
+
+```
+
+One way to fix this histogram is to increase the number of breaks, so we can see any trends in the # of carats.
+
+```{r}
+
+hist(frequencies, breaks = 30)
+
+```
+
+## Bar Charts
+
+Bar charts (or bar graphs) are great for visualizing and comparing categorical data. Each bar represents a category and the heights are the frequency of each bar. The bars can be plotted vertically or horizontally.
+
+```{r, bar charts}
+frequencies <- table(diamonds$cut) # get frequency of cut variable using table(), then store it into the variable "frequencies"
+frequencies
+
+barplot(frequencies) #plot the frequencies onto a bar chart
+
+# Add additional arguments to make the barchart more clear
+# "main" will add a title for the plot
+# "xlab" will add a label for the x axis
+barplot(frequencies, main = "Diamond Distribution", xlab = "cut")
+
+# ?barplot
+```
+
+## Histograms
+
+Histograms are similar to barcharts, however they represent groups of continuous, quantitative data.
+
+```{r, histograms}
+# Draw histogram with the hist() function
+hist(price)
+
+# Specify the number of bins using "breaks"
+hist(price, breaks = 10)
+```
+
+# Box Plots
+
+Box plots are used to visualize the spread of your data. The box represents the quartiles and median of the data, and the ends of the lines represent the min and max. Outliers will appear as dots in the box plot.
+
+Box plots are "non-parametric" which means they can be useful even if the data is heavily skewed.
+
+```{r, box plots}
+# Since we attached(diamonds), we can access each column without using "$"
+boxplot(carat)
+
+# Create a horizontal boxplot using "horizontal"
+boxplot(carat, horizontal =  TRUE)
+
+# Remove outliers using "outline"
+boxplot(carat, horizontal =  TRUE, outline = FALSE)
+
+# Play around with different parameters
+boxplot(carat, horizontal = TRUE, border = "blue", xlab = "Carat", main = "Boxplot")
+```
+
+
+## Pie Charts
+
+Pie charts are used to display proportions of a whole. They also make it easier to see whether different values combined together are larger than others.
+
+```{r, pie chart}
+# Use pie() to display a pie chart 
+# Note: pie() takes in a vector of numeric quantities
+pie(table(diamonds$cut))
+```
+
+## Scatterplots
+
+Scatterplots are used to show relationships between two numeric variables. Each dot represents an observation.
+
+```{r, scatterplot}
+#Use plot() to create a scatterplot to display the value of two variables
+plot(diamonds$price, diamonds$carat)
+
+```
+
+## CHALLENGE
+
+  1. Install the package "tidyverse" and open up its "mtcars" dataset. Then try displaying only the variable names of the dataset.
+  
+```{r, quest1}
+#install.packages("tidyverse")
+library(tidyverse)
+names(mtcars)
+mtcars
+```
+
+  2. Recreate the 1st plot on the slides. Hint: use ?barplot
+  
+```{r, quest2}
+x <- table(mtcars$gear)
+barplot(x, col = c("blue", "red", "green"), xlab = "gear", main = "Bar Plot")
+```
+
+  3. Recreate the 2nd plot on the slides
+  
+```{r, quest3}
+attach(mtcars)
+boxplot(mpg, horizontal = T, border = "blue", main = "mpg Box plot")
+```
+
+  4. Recreate the 3rd plot on the slides and then make a another one with 5 bins.
+  
+```{r, quest4}
+hist(disp, main = "Dispersion Histogram")
+hist(disp, main = "Dispersion Histogram", breaks = 5)
+```
+
+  5. Recreate the 4th plot on the slides
+```{r, quest5}
+plot(mtcars$mpg, mtcars$wt, xlab = "MPG", ylab = "WT", main = "MPG vs WT")
+```
+
